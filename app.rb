@@ -35,12 +35,17 @@ post '/visit' do
 	@phonenumber = params[:phonenumber]
 	@datetime = params[:datetime]
 	@master = params[:master]
+	@colorpicker = params[:colorpicker]
 
 	@f = File.open './public/users.txt','a'
-	@f.write "username: #{@username}; phonenumber: #{@phonenumber}; datetime: #{@datetime}; master: #{@master}\n"
+	@f.write "username: #{@username}; phonenumber: #{@phonenumber}; datetime: #{@datetime}; master: #{@master}; color: #{@colorpicker}\n"
 	@f.close
 
-	erb :visit
+	#erb :visit
+	erb "Отлично #{@username}, мастер #{@master} ждет вас #{@datetime}.<br/>
+		Вы выбрали покраситься в #{@colorpicker} цвет.<br/>
+		За 3 часа до приема пришлем вам смс на номер #{@phonenumber}.<br/>
+		До встречи!"
 end
 
 post '/contacts' do
